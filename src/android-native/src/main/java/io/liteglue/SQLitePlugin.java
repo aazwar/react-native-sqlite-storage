@@ -309,14 +309,14 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
             boolean assetImportRequested = assetFilePath != null && assetFilePath.length() > 0;
             if (assetImportRequested) {
                 if (assetFilePath.compareTo("1") == 0) {
-                    assetFilePath = "www/" + dbname;
+                    assetFilePath = dbname;
                     in = this.getContext().getAssets().open(assetFilePath);
                     try {
                         in = this.getContext().getAssets().open(assetFilePath);
-                        FLog.v(TAG, "Pre-populated DB asset FOUND  in app bundle www subdirectory: " + assetFilePath);
+                        FLog.v(TAG, "Pre-populated DB asset FOUND  in app bundle directory: " + assetFilePath);
                     } catch (Exception ex){
                         assetImportError = true;
-                        FLog.e(TAG, "pre-populated DB asset NOT FOUND in app bundle www subdirectory: " + assetFilePath);
+                        FLog.e(TAG, "pre-populated DB asset NOT FOUND in app bundle directory: " + assetFilePath);
                     }
                 } else if (assetFilePath.charAt(0) == '~') {
                     assetFilePath = assetFilePath.startsWith("~/") ? assetFilePath.substring(2) : assetFilePath.substring(1);
@@ -325,7 +325,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
                         FLog.v(TAG, "Pre-populated DB asset FOUND in app bundle subdirectory: " + assetFilePath);
                     } catch (Exception ex){
                         assetImportError = true;
-                        FLog.e(TAG, "pre-populated DB asset NOT FOUND in app bundle www subdirectory: " + assetFilePath);
+                        FLog.e(TAG, "pre-populated DB asset NOT FOUND in app bundle directory: " + assetFilePath);
                     }
                 } else {
                     File filesDir = this.getContext().getFilesDir();
@@ -341,7 +341,7 @@ public class SQLitePlugin extends ReactContextBaseJavaModule {
                         }
                     } catch (Exception ex){
                         assetImportError = true;
-                        FLog.e(TAG, "Error opening pre-populated DB asset in app bundle www subdirectory: " + assetFilePath);
+                        FLog.e(TAG, "Error opening pre-populated DB asset in app bundle directory: " + assetFilePath);
                     }
                 }
             }
